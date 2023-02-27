@@ -1,0 +1,38 @@
+footer{
+    display: flex;
+    background-color: #4C1616;
+    border-top: solid #FFFFFF;
+}
+.insta {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    font-size: xx-large;
+    -webkit-text-stroke: 0.5px;
+    -webkit-text-stroke-color: #B51A1A;
+}
+.mail {
+    width: 45px;
+    height: 43px;
+    display: flex;
+    font-size: xx-large;
+    -webkit-text-stroke: 0.5px;
+    -webkit-text-stroke-color: #B51A1A;
+}
+
+.text1{
+    margin-top: 3px;
+}
+.text2{
+    margin-top: 3px;
+}
+.logo{
+    display: flex;
+    margin-left: 1087px;
+    margin-top: -45px;
+}
+.logo1{
+    height: 90px;
+    width: 90px;
+    rotate: 180deg;
+}
