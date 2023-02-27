@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/style.css" >
+    <title>Artist_Page</title>
+</head>
+
+<body>
+    <div class="text">
+        RAP
+    </div>
+    
+    <div class="firstlinebox">
+            {{range .}}
+            <div>
+                {{template "whitebox" .}}
+            </div>
+            {{end}}
+    </div>
+    <div class="text2">
+        POP
+    </div>
+    <div class="secondlinebox">
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+
+    </div>
+    <div class="text3">
+        ROCK
+    </div>
+    <div class="thirdlinebox">
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+    </div>
+    <div class="text4">
+        CHILL
+    </div>
+    <div class="lastlinebox">
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+        <div>
+            {{template "whitebox" .}}
+        </div>
+    </div>
+
+
+</body>
+</html>
