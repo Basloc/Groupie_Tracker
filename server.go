@@ -21,7 +21,7 @@ func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
 }
 
 func Home(rw http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./home.html")
+	template, err := template.ParseFiles("./homepage.html", "./template/header.html", "./template/footer.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -47,6 +47,14 @@ func main() {
 
 	fs := http.FileServer(http.Dir("./static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	http.ListenAndServe(":8080", nil)
+
+	fa := http.FileServer(http.Dir("./css/"))
+	http.Handle("/css/", http.StripPrefix("/css/", fa))
+
+	fi := http.FileServer(http.Dir("./template/"))
+	http.Handle("/template/", http.StripPrefix("/template/", fi))
 
 	http.ListenAndServe(":8080", nil)
 }
