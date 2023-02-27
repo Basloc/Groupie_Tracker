@@ -13,7 +13,7 @@ type Artist struct {
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
-	template, err := template.ParseFiles("./ArtistPage.html", "./templates/whitebox.html", "./static/style.css", "./static/styles.css")
+	template, err := template.ParseFiles("./ArtistPage.html", "./template/whitebox.html", "./static/style.css", "./static/styles.css", "./template/header.html", "./template/footer.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,11 +50,6 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 
-	fa := http.FileServer(http.Dir("./css/"))
-	http.Handle("/css/", http.StripPrefix("/css/", fa))
-
 	fi := http.FileServer(http.Dir("./template/"))
 	http.Handle("/template/", http.StripPrefix("/template/", fi))
-
-	http.ListenAndServe(":8080", nil)
 }

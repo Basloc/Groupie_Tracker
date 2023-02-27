@@ -56,5 +56,7 @@ ul{
     border: 2px solid grey;
   }
   header img{
+    height: 100px;
+    width: 100px;
     rotate: 180deg;
   }
