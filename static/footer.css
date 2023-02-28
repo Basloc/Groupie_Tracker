@@ -1,4 +1,5 @@
 footer{
+    position: sticky;
     display: flex;
     background-color: #4C1616;
     border-top: solid #FFFFFF;
