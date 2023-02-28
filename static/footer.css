@@ -1,5 +1,6 @@
 footer{
     position: sticky;
+    bottom: 0px;
     display: flex;
     background-color: #4C1616;
     border-top: solid #FFFFFF;
