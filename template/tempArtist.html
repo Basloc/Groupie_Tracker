@@ -3,8 +3,11 @@
 
 <div class="container" id="{{.Name}}"> 
     <div class="infoContainer">
-        name : {{.Name}}
+        <div class="name">{{.Name}} </div><br>
+        <div class="members">Members : <br> {{range $Members := .Members}} <li>{{$Members}} </li> {{end}}  </div> <br> 
+        <div class="locations">locations : {{.Relations}} </div>     
     </div>
+    <div class="map"></div>
 </div>
 
 {{end}}

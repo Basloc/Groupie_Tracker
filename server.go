@@ -11,9 +11,16 @@ import (
 
 type Artist struct {
 	Name         string
+	Members      []string
+	Relations    string
 	CreationDate int
 	Image        string
 	FirstAlbum   string
+}
+
+type Relations struct {
+	Id             int
+	DatesLocations map[string]string
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
@@ -53,14 +60,35 @@ func main() {
 	json.Unmarshal(body, &ListArt)
 
 	var tabData []Artist
-	tabData = append(tabData, ListArt...)
+	tabData = append(tabData, ListArt...) // possibilite de juste envoyer listart et non tabdata
+	// ---------------------------------------------------------------------
 
+	location, err := http.Get("https://groupietrackers.herokuapp.com/api/relation")
+	var ListRelation []Relations
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer location.Body.Close()
+
+	body2, err := ioutil.ReadAll(location.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	json.Unmarshal(body2, &ListRelation)
+	fmt.Println(ListRelation)
+
+	for k := 0; k < 10; k++ {
+		fmt.Println(ListRelation[k].Id)
+	}
+	// ----------------------------------------------------------------------
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
 	})
 
 	http.HandleFunc("/ArtistPage", func(rw http.ResponseWriter, r *http.Request) {
-		ArtistPage(rw, r, &tabData) // data = struct pour les artist
+		ArtistPage(rw, r, &tabData)
 	})
 
 	http.HandleFunc("/calcul", func(rw http.ResponseWriter, r *http.Request) {

@@ -5,10 +5,32 @@
 
 
 .container {
-    margin-top: 350px;
-    background-color: aliceblue;
+    margin-top: 450px;
+    background-color: white;
     color: black;
     width: 1800px;
-    height: 500px;
+    height: 700px;
     
 }
+
+.infoContainer {
+    height: 700px;
+    width: 900px;
+    background-color: rgb(49, 4, 4);
+    color: rgb(29, 170, 212)
+}
+
+
+.name {
+    margin-left: 400px;
+    font-size: xx-large;
+}
+
+.members {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+
+
+
