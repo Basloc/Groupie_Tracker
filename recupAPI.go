@@ -9,17 +9,16 @@ import (
 )
 
 type Artist struct { // Mettre exactement les meme noms pour les attributs avec une majuscule pour que le json marche
-	Id      int
-	Image   string
-	Name    string
-	Members []string
+	Locations []string
+	Id        int
+	Dates     string
 }
 
 func main() {
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+	url := "https://groupietrackers.herokuapp.com/api/locations/1"
 	var ListArt []Artist
 	names, err := http.Get(url) // API pour les artistes et le liens emmene au prememier artiste
-
+	fmt.Println(names)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,9 +31,10 @@ func main() {
 		log.Fatal(err)
 	}
 	json.Unmarshal(body, &ListArt)
+	fmt.Println(ListArt)
 	//fmt.Println(listart[0].Name)
 	for i := 0; i <= 4; i++ {
-		fmt.Println(ListArt[i].Name)
+		fmt.Println(ListArt[i])
 	}
 
 }
