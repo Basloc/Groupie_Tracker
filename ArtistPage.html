@@ -7,62 +7,17 @@
     <link rel="stylesheet" href="./static/style.css" >
     <title>Artist_Page</title>
 </head>
+{{template "header"}}
 <body>
-    {{template "header"}}
-    <div class="text">
-        <a id="rap">RAP</a>
-    </div>
-    
-    <div class="firstlinebox">
+    <div class="squareArtist">
             {{range .}}
-            <div>
-                {{template "whitebox" .}}
-            </div>
+                {{template "squareArt" .}}
             {{end}}
     </div>
-    <div class="text2" >
-        <a id="pop">POP</a>
-    </div>
-    <div class="secondlinebox">
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
+    {{range .}}
+        {{template "tempArtist" .}}
+    {{end}}
 
-    </div>
-    <div class="text3">
-        <a id="rock">ROCK</a>
-    </div>
-    <div class="thirdlinebox">
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
-    </div>
-    <div class="text4">
-        <a id="chill">CHILL</a>
-    </div>
-    <div class="lastlinebox">
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
-        <div>
-            {{template "whitebox" .}}
-        </div>
-    </div>
-{{template "footer"}}
 </body>
+{{template "footer"}}
 </html>

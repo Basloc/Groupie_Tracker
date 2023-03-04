@@ -10,13 +10,14 @@ import (
 )
 
 type Artist struct {
-	Name  string
-	Age   int
-	Image string
+	Name         string
+	CreationDate int
+	Image        string
+	FirstAlbum   string
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
-	template, err := template.ParseFiles("./ArtistPage.html", "./template/whitebox.html", "./static/style.css", "./static/styles.css", "./template/header.html", "./template/footer.html")
+	template, err := template.ParseFiles("./ArtistPage.html", "./template/whitebox.html", "./static/style.css", "./static/styles.css", "./template/header.html", "./template/footer.html", "./template/tempArtist.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,7 +37,7 @@ func main() {
 
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 	var ListArt []Artist
-	names, err := http.Get(url) // API pour les artistes et le liens emmene au prememier artiste
+	names, err := http.Get(url)
 
 	if err != nil {
 		log.Fatal(err)
@@ -50,32 +51,30 @@ func main() {
 		log.Fatal(err)
 	}
 	json.Unmarshal(body, &ListArt)
-	//fmt.Println(listart[0].Name)
-	for i := 0; i <= 4; i++ {
-		fmt.Println(ListArt[i].Name)
 
-		var tabData []Artist
-		tabData = append(tabData, ListArt...)
-		// //Data := &Artist{"XXXtentacion", 21}
-		// tabData = append(tabData, Artist{"XXXtentacion", 21, "./static/téléchargé.png"})
-		// tabData = append(tabData, Artist{"Lil Peep", 20, "./static/téléchargé.png"})
-		// tabData = append(tabData, Artist{"columbine", 21, "./static/téléchargé.png"})
-		// tabData = append(tabData, Artist{"lorenzo ", 21, "./static/téléchargé.png"})
+	var tabData []Artist
+	tabData = append(tabData, ListArt...)
 
-		http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
-			Home(rw, r)
-		})
+	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+		Home(rw, r)
+	})
 
-		http.HandleFunc("/ArtistPage", func(rw http.ResponseWriter, r *http.Request) {
-			ArtistPage(rw, r, &tabData) // data = struct pour les artist
-		})
+	http.HandleFunc("/ArtistPage", func(rw http.ResponseWriter, r *http.Request) {
+		ArtistPage(rw, r, &tabData) // data = struct pour les artist
+	})
 
-		fs := http.FileServer(http.Dir("./static/"))
-		http.Handle("/static/", http.StripPrefix("/static/", fs))
+	http.HandleFunc("/calcul", func(rw http.ResponseWriter, r *http.Request) {
+		input := ""
+		input = r.FormValue("text")
+		fmt.Println("/ArtistPage#" + input)
+		http.Redirect(rw, r, "/ArtistPage#"+input, http.StatusFound)
+	})
 
-		http.ListenAndServe(":8080", nil)
+	fs := http.FileServer(http.Dir("./static/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-		fi := http.FileServer(http.Dir("./template/"))
-		http.Handle("/template/", http.StripPrefix("/template/", fi))
-	}
+	http.ListenAndServe(":8080", nil)
+
+	ft := http.FileServer(http.Dir("./template/"))
+	http.Handle("/template/", http.StripPrefix("/template/", ft))
 }

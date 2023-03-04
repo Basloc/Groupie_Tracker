@@ -1,0 +1,14 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.container {
+    margin-top: 350px;
+    background-color: aliceblue;
+    color: black;
+    width: 1800px;
+    height: 500px;
+    
+}

@@ -1,9 +1,10 @@
-{{define "whitebox"}}  
+{{define "squareArt"}}  
 <link href="../static/styles.css" rel="stylesheet" type="text/css">
 
-<div class="artist" style="background-image: url({{.Image}});">
-    name : {{.Name}} <br>
-    age : {{.Age}}
+<div class="artist" style="background-image: url({{.Image}});"> 
+    <a href="/ArtistPage#{{.Name}}">
+        <div class="redirect"></div> <!-- obliger de mettre une div special sinon toute la grille devient cliquable -->
+    </a>
 </div>
 
 {{end}} 

@@ -6,7 +6,14 @@
 .artist {
     text-align: center;
     background-color: rgb(255, 255, 255);
-    width: 350px;
-    height: 250px;
-    color: ghostwhite;
+    width: 240px;
+    height: 240px;
 }
+
+.redirect {
+    background-color: transparent;
+    width: 240px;
+    height: 240px;
+}
+
+
