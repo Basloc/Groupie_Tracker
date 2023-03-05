@@ -124,31 +124,26 @@ func main() {
 
 	tabData := UseApi("https://groupietrackers.herokuapp.com/api/artists")
 	/*
-		geocoder := opencagedata.NewGeocoder("ba772045bfb044078998edd6c4dc3c5a")
-		result, _ := geocoder.Geocode("saitama, Japan", nil)
-		fmt.Println(result.Results)
-	*/
+		for t := 0; t < len(tabData); t++ {
+			tabLoca := tabData[t].Loca
+			for j := 0; j < len(tabLoca); j++ {
+				var mapi Maps
+				query := tabLoca[j]
+				url := "https://api.opencagedata.com/geocode/v1/json?q=" + query + "&key=ba772045bfb044078998edd6c4dc3c5a"
+				containMap, _ := http.Get(url)
 
-	for t := 0; t < len(tabData); t++ {
-		tabLoca := tabData[t].Loca
-		for j := 0; j < len(tabLoca); j++ {
-			var mapi Maps
-			query := tabLoca[j]
-			url := "https://api.opencagedata.com/geocode/v1/json?q=" + query + "&key=ba772045bfb044078998edd6c4dc3c5a"
-			containMap, _ := http.Get(url)
+				defer containMap.Body.Close()
 
-			defer containMap.Body.Close()
+				bodyMap, _ := ioutil.ReadAll(containMap.Body)
 
-			bodyMap, _ := ioutil.ReadAll(containMap.Body)
+				json.Unmarshal(bodyMap, &mapi)
+				//fmt.Println(mapi.Results)
 
-			json.Unmarshal(bodyMap, &mapi)
-			//fmt.Println(mapi.Results)
+				//fmt.Println(mapi.Results[0])
+			}
 
-			fmt.Println(mapi.Results[0])
 		}
-
-	}
-
+	*/
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
 	})
