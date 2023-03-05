@@ -66,6 +66,7 @@ func UseApi(url string) []Artist {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	json.Unmarshal(body, &ListArt)
 
 	var tabData []Artist

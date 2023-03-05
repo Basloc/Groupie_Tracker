@@ -36,6 +36,7 @@ h2 {
     display: flex;
 }
 nav{
+    position: static;
     border-right: solid 3px #FFFFFF;
     height: 600px;  
 }
@@ -54,7 +55,6 @@ nav a {
 }
 .rond {
     border-radius: 50%;
-    background-color: #FFFFFF;
     height: 85px;
     width: 85px;
     margin-top: 30px;
@@ -70,10 +70,13 @@ nav a {
     justify-content: center;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+.home{
+    overflow: hidden;
+}
 .carre{
     background-color: #FFFFFF;
     display: flex;
-    height: 100px;
+    height: 120px;
     width: 170px;
     margin-top: 30px;
     margin-left: 200px;
@@ -85,7 +88,18 @@ nav a {
  p{
     margin-top: 30px;
     margin-left: 200px;
+    border: solid 3px #000000;
+    font-size: large;
  }
 .artist{
     font-size: xx-large;
+}
+.xxx{
+    height: 120px;
+    width: 140px;
+    margin-left: 15px;
+}
+.rxxx{
+    border-radius: 50%;
+    background-color: #FFFFFF;
 }
