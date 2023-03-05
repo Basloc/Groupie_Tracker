@@ -17,8 +17,9 @@ type Artist struct {
 	FirstAlbum   string
 	Locations    string
 	ConcertDates string
-	Dates        Date
-	Loca         Location
+	Dates        []string
+	Loca         []string
+	Map          Maps
 }
 
 type Location struct {
@@ -27,6 +28,10 @@ type Location struct {
 
 type Date struct {
 	Dates []string
+}
+
+type Maps struct {
+	Results []map[string]map[string]map[string]string
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
@@ -46,9 +51,7 @@ func Home(rw http.ResponseWriter, r *http.Request) {
 
 }
 
-func main() {
-
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+func UseApi(url string) []Artist {
 	var ListArt []Artist
 	names, err := http.Get(url)
 
@@ -66,38 +69,85 @@ func main() {
 	json.Unmarshal(body, &ListArt)
 
 	var tabData []Artist
-	// possibilite de juste envoyer listart et non tabdata
-	// --------------------------------------------------------------------
 
 	for i := 0; i < len(ListArt); i++ {
 		var containLoca Location
-		urlo := ListArt[i].Locations
-		fmt.Println(urlo)
-		nome, err := http.Get(urlo)
+		urlLoca := ListArt[i].Locations
+		location, err := http.Get(urlLoca)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		defer nome.Body.Close()
+		defer location.Body.Close()
 
-		body2, err := ioutil.ReadAll(nome.Body)
+		body2, err := ioutil.ReadAll(location.Body)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 		json.Unmarshal(body2, &containLoca)
-		fmt.Println(ListArt[i].Name)
-		fmt.Println(i)
-		fmt.Println("reel location : ", containLoca)
-		ListArt[i].Loca = containLoca
-		fmt.Println("location in struct : ", ListArt[i].Loca, "\n")
+		for j := 0; j < len(containLoca.Locations); j++ {
+			//fmt.Println(containLoca.Locations[j])
+			ListArt[i].Loca = append(ListArt[i].Loca, containLoca.Locations[j])
+		}
+
+	}
+
+	for i := 0; i < len(ListArt); i++ {
+		var containeDate Date
+		urlDate := ListArt[i].ConcertDates
+		date, err := http.Get(urlDate)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer date.Body.Close()
+
+		bodyDate, err := ioutil.ReadAll(date.Body)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+		json.Unmarshal(bodyDate, &containeDate)
+		for j := 0; j < len(containeDate.Dates); j++ {
+			ListArt[i].Dates = append(ListArt[i].Dates, containeDate.Dates[j])
+		}
+
 	}
 	tabData = append(tabData, ListArt...)
-	fmt.Println(ListArt[0].Loca)
-	fmt.Println(ListArt[0].Name)
+	return tabData
+}
 
-	// --------------------------------------------------------------------
+func main() {
+
+	tabData := UseApi("https://groupietrackers.herokuapp.com/api/artists")
+	/*
+		geocoder := opencagedata.NewGeocoder("ba772045bfb044078998edd6c4dc3c5a")
+		result, _ := geocoder.Geocode("saitama, Japan", nil)
+		fmt.Println(result.Results)
+	*/
+
+	for t := 0; t < len(tabData); t++ {
+		tabLoca := tabData[t].Loca
+		for j := 0; j < len(tabLoca); j++ {
+			var mapi Maps
+			query := tabLoca[j]
+			url := "https://api.opencagedata.com/geocode/v1/json?q=" + query + "&key=ba772045bfb044078998edd6c4dc3c5a"
+			containMap, _ := http.Get(url)
+
+			defer containMap.Body.Close()
+
+			bodyMap, _ := ioutil.ReadAll(containMap.Body)
+
+			json.Unmarshal(bodyMap, &mapi)
+			//fmt.Println(mapi.Results)
+
+			fmt.Println(mapi.Results[0])
+		}
+
+	}
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
