@@ -12,15 +12,21 @@ import (
 type Artist struct {
 	Name         string
 	Members      []string
-	Relations    string
 	CreationDate int
 	Image        string
 	FirstAlbum   string
+	Locations    string
+	ConcertDates string
+	Dates        Date
+	Loca         Location
 }
 
-type Relations struct {
-	Id             int
-	DatesLocations map[string]string
+type Location struct {
+	Locations []string
+}
+
+type Date struct {
+	Dates []string
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
@@ -60,29 +66,39 @@ func main() {
 	json.Unmarshal(body, &ListArt)
 
 	var tabData []Artist
-	tabData = append(tabData, ListArt...) // possibilite de juste envoyer listart et non tabdata
-	// ---------------------------------------------------------------------
+	// possibilite de juste envoyer listart et non tabdata
+	// --------------------------------------------------------------------
 
-	location, err := http.Get("https://groupietrackers.herokuapp.com/api/relation")
-	var ListRelation []Relations
-	if err != nil {
-		log.Fatal(err)
+	for i := 0; i < len(ListArt); i++ {
+		var containLoca Location
+		urlo := ListArt[i].Locations
+		fmt.Println(urlo)
+		nome, err := http.Get(urlo)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer nome.Body.Close()
+
+		body2, err := ioutil.ReadAll(nome.Body)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+		json.Unmarshal(body2, &containLoca)
+		fmt.Println(ListArt[i].Name)
+		fmt.Println(i)
+		fmt.Println("reel location : ", containLoca)
+		ListArt[i].Loca = containLoca
+		fmt.Println("location in struct : ", ListArt[i].Loca, "\n")
 	}
+	tabData = append(tabData, ListArt...)
+	fmt.Println(ListArt[0].Loca)
+	fmt.Println(ListArt[0].Name)
 
-	defer location.Body.Close()
+	// --------------------------------------------------------------------
 
-	body2, err := ioutil.ReadAll(location.Body)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	json.Unmarshal(body2, &ListRelation)
-	fmt.Println(ListRelation)
-
-	for k := 0; k < 10; k++ {
-		fmt.Println(ListRelation[k].Id)
-	}
-	// ----------------------------------------------------------------------
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
 	})
