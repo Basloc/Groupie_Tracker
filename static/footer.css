@@ -6,20 +6,22 @@ footer{
     border-top: solid #FFFFFF;
 }
 .insta {
+    color: #B51A1A;
     width: 45px;
     height: 45px;
     display: flex;
     font-size: xx-large;
-    -webkit-text-stroke: 0.5px;
-    -webkit-text-stroke-color: #B51A1A;
+    -webkit-text-stroke: 0.75px;
+    -webkit-text-stroke-color: #000000;
 }
 .mail {
+    color: #B51A1A;
     width: 45px;
     height: 43px;
     display: flex;
     font-size: xx-large;
-    -webkit-text-stroke: 0.5px;
-    -webkit-text-stroke-color: #B51A1A;
+    -webkit-text-stroke: 0.75px;
+    -webkit-text-stroke-color: #000000;
 }
 
 .text1{
