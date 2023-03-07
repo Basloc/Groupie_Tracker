@@ -8,11 +8,6 @@ body {
     overflow-y: hidden;
 }
 
-img {
-    width: 100px;
-    height: 100px;
-}
-
 nav {
     top: 0;
     bottom: 0;
@@ -22,6 +17,7 @@ nav {
     overflow: hidden;
     box-shadow: 0 2px 35px rgba(0, 0, 0, 0, 1);
 }
+
 h2 {
     opacity: 40%;
     padding-left: 15px;
@@ -32,14 +28,18 @@ h2 {
 .nav-item {
     margin-left: 10px;
 }
+
 .souscontainer{
     display: flex;
 }
+
 nav{
     position: static;
     border-right: solid 3px #FFFFFF;
-    height: 600px;  
+    height: 600px;
+    width: 250px;  
 }
+
 nav a {
     -webkit-text-stroke-color: #000000;
     -webkit-text-stroke-width:thin;
@@ -52,15 +52,8 @@ nav a {
     padding: 10px;
     align-content: space-around;
     text-decoration: none;
-}
-.rond {
-    border-radius: 50%;
-    height: 85px;
-    width: 85px;
-    margin-top: 30px;
-    margin-left: 150px;
-    display: flex;
-}
+}   
+
 .test{
     margin-top: -50px;
     border-bottom: solid #FFFFFF;
@@ -70,36 +63,29 @@ nav a {
     justify-content: center;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+
 .home{
     overflow: hidden;
 }
-.carre{
-    background-color: #FFFFFF;
-    display: flex;
-    height: 120px;
-    width: 170px;
-    margin-top: 30px;
-    margin-left: 200px;
- }
- .zone{
-    display: flex;
-    margin-top: 10px;
- }
- p{
-    margin-top: 30px;
-    margin-left: 200px;
-    border: solid 3px #000000;
-    font-size: large;
- }
+
 .artist{
     font-size: xx-large;
 }
-.xxx{
-    height: 120px;
-    width: 140px;
-    margin-left: 15px;
+.checkbox{
+        font: 1rem 'Fira Sans', sans-serif;
+        margin-left: 10px;
+        margin-top: 15px;
 }
-.rxxx{
-    border-radius: 50%;
-    background-color: #FFFFFF;
+.filter{
+    height: 70px;
+    width: 220px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.date{
+    margin-top: 500px;
+}
+.range{
+    margin-top: 8px;
+    margin-left: 6px;
 }

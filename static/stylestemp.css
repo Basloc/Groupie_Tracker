@@ -16,6 +16,7 @@
 .infoContainer {
     height: 700px;
     width: 900px;
+    font-size: large;
     background-color: rgb(49, 4, 4);
     color: rgb(29, 170, 212)
 }
@@ -23,7 +24,7 @@
 
 .name {
     margin-left: 400px;
-    font-size: xx-large;
+    font-size: 50px;
 }
 
 .members {

@@ -1,0 +1,25 @@
+{{define "filter"}}
+<fieldset class="filter">
+    <legend>Choose the number of members:</legend>
+
+    <div class="checkbox">
+      <input type="checkbox" id="1" name="1">
+      <label for="1">1</label>
+      <input type="checkbox" id="2" name="2">
+      <label for="2">2</label>
+      <input type="checkbox" id="3" name="3">
+      <label for="3">3</label>
+      <input type="checkbox" id="4" name="4">
+      <label for="4">4</label>
+      <input type="checkbox" id="5" name="5">
+      <label for="5">5</label>
+      <input type="checkbox" id="6" name="6">
+      <label for="6">6</label>
+      <div>
+        <label for="date">Date : </label>
+        <input type="range" id="date" name="date"
+               min="1970" max="2020">
+      </div>
+    </div>
+</fieldset>
+{{end}}

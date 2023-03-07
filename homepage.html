@@ -18,54 +18,38 @@
                         <span class="artist"> Page Artiste </span>
                     </a>
                     </div>
-                    <li>
-                        <a href="/ArtistPage#rap">
-                            <span class="nav-item">RAP</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/ArtistPage#pop">
-                            <span class="nav-item">POP</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/ArtistPage#rock">
-                            <span class="nav-item">ROCK</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/ArtistPage#chill">
-                            <span class="nav-item">CHILL</span>
-                        </a>
-                    </li>
+                    <fieldset class="filter">
+                        <legend>Choose the number of members:</legend>
+                    
+                        <div class="checkbox">
+                          <input type="checkbox" id="1" name="1">
+                          <label for="1">1</label>
+                          <input type="checkbox" id="2" name="2">
+                          <label for="2">2</label>
+                          <input type="checkbox" id="3" name="3">
+                          <label for="3">3</label>
+                          <input type="checkbox" id="4" name="4">
+                          <label for="4">4</label>
+                          <input type="checkbox" id="5" name="5">
+                          <label for="5">5</label>
+                          <input type="checkbox" id="6" name="6">
+                          <label for="6">6</label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="filter">
+                        <legend>Choose the date of concert :</legend>
+                        <div class="range">
+                        <label for="date">Date : </label>
+                        <input type="range" id="date" name="date" value="1970"
+                               min="1970" max="2020">
+                            <p>Value :<output id="date"></output></p>
+                      </div>
+                    </fieldset>
                 </ul>
             </nav> 
-        <div class="home">
-            <div class="zone">
-                <div class="rond">
-                    <img class ="rxxx" src="./static/noicatnetxxx pour yfitops.png">
-                </div>
-                <div class="carre">
-                    <img class ="xxx" src="./static/xxxtentacion album yfitops.jpg">
-                </div>
-                <p>Le rap est un mouvement culturel et musical qui<br> tire ses origines du hip-hop. Apparu au début des<br> années 1970 dans les ghettos américains, le rap se<br> caractérise par une diction très rythmée et l’usage de la rime.</p>
+            <div class="home">
+            
             </div>
-            <div class="zone">
-                <div class="rond"></div>
-                <div class="carre"></div>
-                <p>La musique pop est un genre musical apparu dans<br> les années 1960 au Royaume-Uni et aux États-Unis.<br> Les chansons pop parlent en général de l'amour ou<br> des relations amoureuses.</p>
-            </div>
-            <div class="zone">
-                <div class="rond"></div>
-                <div class="carre"></div>
-                <p>Le rock est un genre musical apparu dans les années<br> 1950 aux États-Unis et qui s'est développé en différents<br> sous-genres à partir des années 1960, notamment aux<br> États-Unis et au Royaume-Uni.</p>
-            </div>
-            <div class="zone">
-                <div class="rond"></div>
-                <div class="carre"></div>
-                <p>Le chill-out est un terme décrivant plusieurs genres<br> de musiques électroniques caractérisées par <br>leur mélodie reposante et leur tempo modéré,<br> il désigne un style de musique planante</p>
-            </div>
-        </div>
         </div>
     </div>
     {{template "footer"}}
