@@ -9,7 +9,7 @@ import (
 	"text/template"
 )
 
-type Artist struct {
+type Artist struct { // Struct pour acceuillir les infos de l api groupie
 	Name         string
 	Members      []string
 	CreationDate int
@@ -19,19 +19,14 @@ type Artist struct {
 	ConcertDates string
 	Dates        []string
 	Loca         []string
-	Map          Maps
 }
 
-type Location struct {
+type Location struct { //
 	Locations []string
 }
 
 type Date struct {
 	Dates []string
-}
-
-type Maps struct {
-	Results []map[string]map[string]map[string]string
 }
 
 func ArtistPage(rw http.ResponseWriter, r *http.Request, data *[]Artist) {
@@ -117,6 +112,7 @@ func UseApi(url string) []Artist {
 		}
 
 	}
+
 	tabData = append(tabData, ListArt...)
 	return tabData
 }
@@ -124,27 +120,8 @@ func UseApi(url string) []Artist {
 func main() {
 
 	tabData := UseApi("https://groupietrackers.herokuapp.com/api/artists")
-	/*
-		for t := 0; t < len(tabData); t++ {
-			tabLoca := tabData[t].Loca
-			for j := 0; j < len(tabLoca); j++ {
-				var mapi Maps
-				query := tabLoca[j]
-				url := "https://api.opencagedata.com/geocode/v1/json?q=" + query + "&key=ba772045bfb044078998edd6c4dc3c5a"
-				containMap, _ := http.Get(url)
+	//fmt.Println(tabData[0].Map)
 
-				defer containMap.Body.Close()
-
-				bodyMap, _ := ioutil.ReadAll(containMap.Body)
-
-				json.Unmarshal(bodyMap, &mapi)
-				//fmt.Println(mapi.Results)
-
-				//fmt.Println(mapi.Results[0])
-			}
-
-		}
-	*/
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
 	})

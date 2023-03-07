@@ -10,6 +10,7 @@
     color: black;
     width: 1800px;
     height: 700px;
+    overflow: hidden;
     
 }
 
@@ -19,7 +20,6 @@
     background-color: rgb(49, 4, 4);
     color: rgb(29, 170, 212)
 }
-
 
 .name {
     margin-left: 400px;
