@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 	"text/template"
 )
 
@@ -134,7 +135,19 @@ func main() {
 		input := ""
 		input = r.FormValue("text")
 		fmt.Println("/ArtistPage#" + input)
-		http.Redirect(rw, r, "/ArtistPage#"+input, http.StatusFound)
+		for i := 0; i < len(tabData); i++ {
+			if strings.ToLower(input) == strings.ToLower(tabData[i].Name) {
+				http.Redirect(rw, r, "/ArtistPage#"+tabData[i].Name, http.StatusFound)
+			}
+			for j := 0; j < len(tabData[i].Members); j++ {
+				if strings.ToLower(input) == strings.ToLower(tabData[i].Members[j]) {
+					http.Redirect(rw, r, "/ArtistPage#"+tabData[i].Name, http.StatusFound)
+				}
+			}
+		}
+		checkboxes := r.Form["check"]
+		fmt.Println(checkboxes)
+		// redirect sur la page avec uniquement les valeur voulue
 	})
 
 	fs := http.FileServer(http.Dir("./static/"))
