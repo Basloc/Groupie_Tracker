@@ -145,8 +145,8 @@ func main() {
 				}
 			}
 		}
-		checkboxes := r.Form["check"]
-		fmt.Println(checkboxes)
+		checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6 := r.Form["check1"], r.Form["check2"], r.Form["check3"], r.Form["check4"], r.Form["check5"], r.Form["check6"]
+		fmt.Println(checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6)
 		// redirect sur la page avec uniquement les valeur voulue
 	})
 
