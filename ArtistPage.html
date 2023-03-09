@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/style.css" >
+    <link href="../static/stylestemp.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
     <title>Artist_Page</title>
 </head>
 {{template "header"}}
@@ -15,9 +19,20 @@
             {{end}}
     </div>
     {{range .}}
-        {{template "tempArtist" .}}
+        <div class="container" id="{{.Name}}"> 
+            <div class="infoContainer">
+                <div class="name">{{.Name}} </div><br>
+                <div class="members">Members : <br> {{range $Members := .Members}} <li>{{$Members}} </li> {{end}}  </div> <br> 
+                <div class="locations">Locations : <br> {{range $Loca := .Loca}} <li>{{$Loca}} </li> {{end}} </div>
+                <div class="dates">Dates : <br> {{range $Date := .Dates}} <li>{{$Date}} </li> {{end}} </div>     
+                <div id="map" class="map"></div>
+            </div>
+        </div>    
     {{end}}
-
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+crossorigin=""></script>
+<script src="./static/map.js"></script>
 </body>
 {{template "footer"}}
 </html>

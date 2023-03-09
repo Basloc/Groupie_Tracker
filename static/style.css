@@ -15,3 +15,13 @@ body {
     grid-column-gap: 5px;
     grid-row-gap: 5px;
 }
+
+#map { 
+    height: 700px; 
+    width: 900px;
+    margin-left: 900px;
+    margin-top: -550px;
+}
+
+
+
