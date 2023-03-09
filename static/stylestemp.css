@@ -6,11 +6,9 @@
 
 .container {
     margin-top: 450px;
-    background-color: white;
-    color: black;
+    background-color: transparent;
     width: 1800px;
     height: 700px;
-    overflow: hidden;
     
 }
 
