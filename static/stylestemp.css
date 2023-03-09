@@ -3,41 +3,68 @@
     margin: 0px;
 }
 
+body{
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
 
 .container {
     margin-top: 450px;
     background-color: transparent;
-    width: 1800px;
-    height: 700px;
-    
+    color: #d11313;
+    width: 100%;
+    height: 765px;
+
 }
 
 .infoContainer {
-    height: 700px;
-    width: 900px;
+    height: 100%;
+    width: 50%;
     font-size: large;
-    background-color: rgb(49, 4, 4);
-    color: #D8BF9F;
+    background-image: linear-gradient(180deg, #4C1616, #D11313);
+
 }
 
 .name {
-    margin-left: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 50px;
+    -webkit-text-stroke:1.25px;
+    -webkit-text-stroke-color: #000000;
+
 }
 
 .members {
     margin-left: 30px;
     margin-top: 10px;
+    color: #000000;
+    border:solid 4px #ffffff;
+    height: fit-content;
+    padding: 2px;
+    background-image: linear-gradient(180deg, #D11313, #fe9a04);
 }
 
 .locations {
     margin-left: 30px;
+    color: #000000;
+    border:solid 4px #ffffff;
+    height: fit-content;
+    padding: 2px;
+    background-image: linear-gradient(180deg, #D11313, #fe9a04);
 }
 
 .dates {
     margin-left: 30px;
+    color: #000000;
+    border:solid 4px #ffffff;
+    height: fit-content;
+    padding: 2px;
+    background-image: linear-gradient(180deg, #D11313, #fe9a04);
 }
-
-
-
-
+.info{
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0 0 0;
+}
