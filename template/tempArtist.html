@@ -3,10 +3,12 @@
 
 <div class="container" id="{{.Name}}"> 
     <div class="infoContainer">
-        <div class="name">{{.Name}} </div><br>
-        <div class="members">Members : <br> {{range $Members := .Members}} <li>{{$Members}} </li> {{end}}  </div> <br> 
-        <div class="locations">Locations : <br> {{range $Loca := .Loca}} <li>{{$Loca}} </li> {{end}} </div> <br>
-        <div class="dates">Dates : <br> {{range $Date := .Dates}} <li>{{$Date}} </li> {{end}} </div>     
+        <div class="name">{{.Name}} </div>
+        <div class="info">
+            <div class="members">Members :  {{range $Members := .Members}} <li>{{$Members}} </li> {{end}}  </div>  
+            <div class="locations">Locations : {{range $Loca := .Loca}} <li>{{$Loca}} </li> {{end}} </div> 
+            <div class="dates">Dates :  {{range $Date := .Dates}} <li>{{$Date}} </li> {{end}} </div> 
+        </div>    
     </div>
     <div class="map"></div>
 </div>

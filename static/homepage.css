@@ -89,3 +89,28 @@ nav a {
     margin-top: 8px;
     margin-left: 6px;
 }
+.titre{
+    font-size: 40px;
+    margin-left: 430px;
+    margin-top: 40px;
+    -webkit-text-stroke:0.10px;
+    -webkit-text-stroke-color: #ffffff;
+}
+.text{
+    display: flex;
+    font-size: 20px;
+    margin-top: 30px;
+}
+.expli{
+    padding: 5px;
+    height: 50%;
+    width: 50%;
+    border-right:solid 3px #FFFFFF;
+    border-top:solid 3px #FFFFFF;
+    border-bottom:solid 3px #FFFFFF;
+}
+.detail{
+    height: 50%;
+    width: 50%;
+    border:solid 3px #FFFFFF;
+}
