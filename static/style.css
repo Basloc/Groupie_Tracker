@@ -17,9 +17,9 @@ body {
 }
 
 #map { 
-    height: 700px; 
-    width: 900px;
-    margin-left: 900px;
+    height: 100%; 
+    width: 50%;
+    margin-left: 850px;
     margin-top: -655px;
 }
 
