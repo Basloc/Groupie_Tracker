@@ -37,7 +37,7 @@ nav{
     position: static;
     border-right: solid 3px #FFFFFF;
     height: 600px;
-    width: 250px;  
+    width: 70%;  
 }
 
 nav a {
@@ -70,6 +70,7 @@ nav a {
 
 .artist{
     font-size: xx-large;
+    margin-left: 8%;
 }
 .checkbox{
         font: 1rem 'Fira Sans', sans-serif;
@@ -90,27 +91,28 @@ nav a {
     margin-left: 6px;
 }
 .titre{
-    font-size: 40px;
-    margin-left: 430px;
+    font-size: 60px;
+    margin-left: 350px;
     margin-top: 40px;
-    -webkit-text-stroke:0.10px;
-    -webkit-text-stroke-color: #ffffff;
 }
 .text{
     display: flex;
-    font-size: 20px;
-    margin-top: 30px;
+    font-size: 35px;
+    margin-top: 80px;
 }
 .expli{
     padding: 5px;
     height: 50%;
     width: 50%;
-    border-right:solid 3px #FFFFFF;
-    border-top:solid 3px #FFFFFF;
-    border-bottom:solid 3px #FFFFFF;
+    border-right:solid 3px #000000;
+    border-top:solid 3px #000000;
+    border-bottom:solid 3px #000000;
 }
 .detail{
+    padding: 5px;
     height: 50%;
     width: 50%;
-    border:solid 3px #FFFFFF;
+    border-right:solid 3px #000000;
+    border-top:solid 3px #000000;
+    border-bottom:solid 3px #000000;
 }
