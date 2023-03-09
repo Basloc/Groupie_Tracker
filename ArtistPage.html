@@ -29,8 +29,17 @@
                 </div>    
                 <div id="map" class="map"></div>
             </div>
-        </div>    
-    {{end}}
+        {{else if .NotHidden}}
+            <div   class="container" id="{{.Name}}">
+                <div class="infoContainer">
+                    <div class="name">{{.Name}} </div><br>
+                    <div class="members">Members : <br> {{range $Members := .Members}} <li>{{$Members}} </li> {{end}}  </div> <br> 
+                    <div class="locations">Locations : <br> {{range $Loca := .Loca}} <li>{{$Loca}} </li> {{end}} </div>
+                    <div class="dates">Dates : <br> {{range $Date := .Dates}} <li>{{$Date}} </li> {{end}} </div>     
+                    <div id="map" class="map"></div>
+                </div> 
+            </div>    
+    {{end}} {{end}}
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
 integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 crossorigin=""></script>
