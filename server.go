@@ -194,10 +194,6 @@ func filterMember(checkboxe1 []string, checkboxe2 []string, checkboxe3 []string,
 
 func filterDate(dateInt int, tabData []Artist) { // fonction pour le filtre date de concert
 	for i := 0; i < len(tabData); i++ {
-		tabData[i].Hidden = ""
-		tabData[i].NotHidden = "true"
-	}
-	for i := 0; i < len(tabData); i++ {
 		for j := 0; j < len(tabData[i].Dates); j++ {
 			if len(tabData[i].Dates[j]) == 11 {
 				str := tabData[i].Dates[j][7:]
@@ -232,6 +228,18 @@ func filterDate(dateInt int, tabData []Artist) { // fonction pour le filtre date
 	}
 }
 
+func filterCreation(tabData []Artist, creationInt int) { // fonction du filtre de date de creation
+	for i := 0; i < len(tabData); i++ {
+		if creationInt < tabData[i].CreationDate {
+			tabData[i].Hidden = "true"
+			tabData[i].NotHidden = ""
+		} else {
+			tabData[i].Hidden = ""
+			tabData[i].NotHidden = "true"
+		}
+	}
+}
+
 func main() {
 
 	tabData := UseApi("https://groupietrackers.herokuapp.com/api/artists") // creation du tableau d artist
@@ -250,6 +258,10 @@ func main() {
 	})
 
 	http.HandleFunc("/calcul", func(rw http.ResponseWriter, r *http.Request) { // creation d'une route calcul appeler pour tout ce qui est filtre et serchbar
+		for i := 0; i < len(tabData); i++ {
+			tabData[i].Hidden = ""
+			tabData[i].NotHidden = "true"
+		}
 		input := ""
 		input = r.FormValue("text")
 		fmt.Println("/ArtistPage#" + input)
@@ -258,13 +270,8 @@ func main() {
 			http.Redirect(rw, r, "/ArtistPage#"+redirect, http.StatusFound)
 		}
 
-		for i := 0; i < len(tabData); i++ {
-			tabData[i].Hidden = ""
-			tabData[i].NotHidden = "true"
-		}
 		// creation de varaiable qui donneront l état de nos checkboxes
 		checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6 := r.Form["check1"], r.Form["check2"], r.Form["check3"], r.Form["check4"], r.Form["check5"], r.Form["check6"]
-		fmt.Println(checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6)
 		filterMember(checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6, tabData)
 
 		date := r.FormValue("date") // recuperation de la valeur sur le filtre des dates de concert
@@ -277,6 +284,13 @@ func main() {
 		}
 		if err != nil {
 			fmt.Println(" erreur :", err)
+		}
+
+		creation := r.FormValue("creation")
+		creationInt := 0
+		_, err = fmt.Sscan(creation, &creationInt)
+		if creationInt != 0 {
+			filterCreation(tabData, creationInt)
 		}
 
 		http.Redirect(rw, r, "/ArtistPage", http.StatusFound) // redirige sur la page artist avec les changements des etat visible ou non
