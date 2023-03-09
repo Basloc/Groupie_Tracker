@@ -265,6 +265,9 @@ func main() {
 		input := ""
 		input = r.FormValue("text")
 		fmt.Println("/ArtistPage#" + input)
+		if input == "home" {
+			http.Redirect(rw, r, "/", http.StatusFound)
+		}
 		if input != "" { // verification si un information est rentrer dans la barre de recherche
 			redirect := searchBar(input, tabData)
 			http.Redirect(rw, r, "/ArtistPage#"+redirect, http.StatusFound)
