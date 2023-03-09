@@ -8,7 +8,7 @@ var OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{
 
 
 OpenStreetMap_Mapnik.addTo(map)
-L.marker("Osaka").addTo(map);
+L.marker("Lyon").addTo(map);
 
 
 let locations = document.querySelectorAll("li");;

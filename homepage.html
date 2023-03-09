@@ -39,13 +39,15 @@
                         </form>
                         </fieldset>
                         <fieldset class="filter">
-                            <legend>Choose the date of concert :</legend>
-                            <div class="range">
-                                <label for="date">Date : </label>
-                                <input type="range" id="date" name="date" value="1970"
-                                min="1970" max="2020">
-                                <p>Value :<output id="date"></output></p>
-                            </div>
+                            <form method="post" action="/calcul" name="date">
+                                <legend>Choose the date of concert :</legend>
+                                <div class="range">
+                                    <label for="date">Date : </label>
+                                    <input type="range" id="date" name="date" value="1970"
+                                    min="1970" max="2020" step="10">
+                                    <input type="submit" name="submtit2" value="Envoyer">
+                                </div>
+                            </form>
                         </fieldset>
                 </ul>
             </nav> 

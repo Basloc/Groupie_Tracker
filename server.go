@@ -20,9 +20,11 @@ type Artist struct { // Struct pour acceuillir les infos de l api groupie
 	ConcertDates string
 	Dates        []string
 	Loca         []string
+	Hidden       string
+	NotHidden    string
 }
 
-type Location struct { //
+type Location struct {
 	Locations []string
 }
 
@@ -122,6 +124,10 @@ func main() {
 
 	tabData := UseApi("https://groupietrackers.herokuapp.com/api/artists")
 	//fmt.Println(tabData[0].Map)
+	for i := 0; i < len(tabData); i++ {
+		tabData[i].Hidden = ""
+		tabData[i].NotHidden = "true"
+	}
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home(rw, r)
@@ -132,6 +138,7 @@ func main() {
 	})
 
 	http.HandleFunc("/calcul", func(rw http.ResponseWriter, r *http.Request) {
+		/*    en faire un fonction car fonctionne   */
 		input := ""
 		input = r.FormValue("text")
 		fmt.Println("/ArtistPage#" + input)
@@ -145,9 +152,89 @@ func main() {
 				}
 			}
 		}
+		/*    fin de la fonction      */
+
+		/* faire en fonction car foctionne*/
+
+		for i := 0; i < len(tabData); i++ {
+			tabData[i].Hidden = ""
+			tabData[i].NotHidden = "true"
+		}
+
 		checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6 := r.Form["check1"], r.Form["check2"], r.Form["check3"], r.Form["check4"], r.Form["check5"], r.Form["check6"]
 		fmt.Println(checkboxe1, checkboxe2, checkboxe3, checkboxe4, checkboxe5, checkboxe6)
-		// redirect sur la page avec uniquement les valeur voulue
+		fmt.Println(len(checkboxe1))
+		if len(checkboxe1) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 1 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else if len(checkboxe2) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 2 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else if len(checkboxe3) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 3 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else if len(checkboxe4) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 4 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else if len(checkboxe5) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 5 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else if len(checkboxe6) != 0 {
+			for i := 0; i < len(tabData); i++ {
+				if len(tabData[i].Members) > 6 {
+					tabData[i].Hidden = "true"
+					tabData[i].NotHidden = ""
+
+				}
+			}
+		} else {
+			for i := 0; i < len(tabData); i++ {
+				tabData[i].Hidden = ""
+				tabData[i].NotHidden = "true"
+			}
+
+		}
+		http.Redirect(rw, r, "/ArtistPage", http.StatusFound)
+		/*  fin de la fonct    */
+
+		/*   faire une fonction avec  */
+		date := r.FormValue("date")
+		fmt.Println(date)
+		for i := 0; i < len(tabData); i++ {
+			for j := 0; j < len(tabData[i].Dates); j++ {
+				//faire le test savoir si la taille vaut 11 ou 10 pour savoir si il y a une etoile ou non
+			}
+		}
+		a := "100"
+		b := 0
+		_, err := fmt.Sscan(a, &b)
+		fmt.Println(a, b, err)
+		/*   fin de la fonction      */
 	})
 
 	fs := http.FileServer(http.Dir("./static/"))
